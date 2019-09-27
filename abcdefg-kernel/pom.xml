@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>abcdefg-parent</artifactId>
+    <groupId>com.plc.abcdefg</groupId>
+    <version>1.0.0</version>
+    <relativePath>../abcdefg-parent/pom.xml</relativePath>
+  </parent>
+
+  <!--<groupId>com.plc.abcdefg</groupId>-->
+  <artifactId>abcdefg-kernel</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <packaging>pom</packaging>
+
+  <name>abcdefg-kernel</name>
+  <description>abcdefg微服务核心</description>
+  <url>http://www.example.com</url>
+
+  <!--<parent>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--<version>2.0.8.RELEASE</version>-->
+  <!--</parent>-->
+
+  <modules>
+    <!--<module>kernel-model</module>-->
+    <module>kernel-jwt</module>
+    <module>kernel-model</module>
+    <module>kernel-datasource</module>
+  </modules>
+
+  <!--<properties>-->
+    <!--<spring-boot.version>2.0.8.RELEASE</spring-boot.version>-->
+    <!--<spring-cloud.version>Finchley.SR2</spring-cloud.version>-->
+    <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+    <!--<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
+    <!--<mp.springboot.version>3.1.0</mp.springboot.version>-->
+    <!--<java.version>1.8</java.version>-->
+    <!--<zxing.version>3.2.1</zxing.version>-->
+    <!--<druid.version>1.1.6</druid.version>-->
+    <!--<beetl.version>2.7.15</beetl.version>-->
+    <!--<swagger.version>2.2.2</swagger.version>-->
+    <!--<commons-lang3.version>3.6</commons-lang3.version>-->
+    <!--<ehcache.core.version>2.6.11</ehcache.core.version>-->
+    <!--<mysql-connector-java.version>5.1.38</mysql-connector-java.version>-->
+    <!--<jwt.version>0.7.0</jwt.version>-->
+    <!--<flowable.version>6.2.0</flowable.version>-->
+    <!--<hutool.version>4.0.0</hutool.version>-->
+    <!--<javax.ws.rs.version>2.0-m02</javax.ws.rs.version>-->
+    <!--<cn.jpush.api.version>3.2.9</cn.jpush.api.version>-->
+    <!--<org.apache.logging.log4j>2.8.2</org.apache.logging.log4j>-->
+    <!--<junit.log4j>4.12</junit.log4j>-->
+  <!--</properties>-->
+
+  <!--<dependencyManagement>-->
+    <!--<dependencies>-->
+      <!--<dependency>-->
+        <!--<groupId>com.baomidou</groupId>-->
+        <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
+        <!--<version>${mp.springboot.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+        <!--<groupId>com.baomidou</groupId>-->
+        <!--<artifactId>mybatis-plus</artifactId>-->
+        <!--<version>${mp.springboot.version}</version>-->
+      <!--</dependency>-->
+      <!--&lt;!&ndash;restFul 架包&ndash;&gt;-->
+      <!--<dependency>-->
+        <!--<groupId>javax.ws.rs</groupId>-->
+        <!--<artifactId>javax.ws.rs-api</artifactId>-->
+        <!--<version>${javax.ws.rs.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+        <!--<groupId>mysql</groupId>-->
+        <!--<artifactId>mysql-connector-java</artifactId>-->
+        <!--<version>${mysql-connector-java.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>fastjson</artifactId>-->
+        <!--<version>${fastjson.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>druid</artifactId>-->
+        <!--<version>${druid.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+        <!--<groupId>com.google.zxing</groupId>-->
+        <!--<artifactId>core</artifactId>-->
+        <!--<version>${zxing.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+        <!--<groupId>io.jsonwebtoken</groupId>-->
+        <!--<artifactId>jjwt</artifactId>-->
+        <!--<version>${jwt.version}</version>-->
+      <!--</dependency>-->
+
+      <!--&lt;!&ndash;spring cloud&ndash;&gt;-->
+      <!--<dependency>-->
+        <!--<groupId>org.springframework.cloud</groupId>-->
+        <!--<artifactId>spring-cloud-dependencies</artifactId>-->
+        <!--<version>${spring-cloud.version}</version>-->
+        <!--<type>pom</type>-->
+        <!--<scope>import</scope>-->
+      <!--</dependency>-->
+    <!--</dependencies>-->
+  <!--</dependencyManagement>-->
+
+</project>

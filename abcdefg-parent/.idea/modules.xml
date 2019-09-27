@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-consumer/abcdefg-consumer.iml" filepath="$PROJECT_DIR$/../abcdefg-consumer/abcdefg-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-core/abcdefg-core.iml" filepath="$PROJECT_DIR$/../abcdefg-core/abcdefg-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-kernel/kernel-datasource/abcdefg-datasource.iml" filepath="$PROJECT_DIR$/../abcdefg-kernel/kernel-datasource/abcdefg-datasource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-eureka/abcdefg-eureka.iml" filepath="$PROJECT_DIR$/../abcdefg-eureka/abcdefg-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-gateway/abcdefg-gateway.iml" filepath="$PROJECT_DIR$/../abcdefg-gateway/abcdefg-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-kernel/kernel-jwt/abcdefg-jwt.iml" filepath="$PROJECT_DIR$/../abcdefg-kernel/kernel-jwt/abcdefg-jwt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-kernel/abcdefg-kernel.iml" filepath="$PROJECT_DIR$/../abcdefg-kernel/abcdefg-kernel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-kernel/kernel-model/abcdefg-model.iml" filepath="$PROJECT_DIR$/../abcdefg-kernel/kernel-model/abcdefg-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/abcdefg-parent.iml" filepath="$PROJECT_DIR$/abcdefg-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-producer/abcdefg-producer.iml" filepath="$PROJECT_DIR$/../abcdefg-producer/abcdefg-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-producer2/abcdefg-producer2.iml" filepath="$PROJECT_DIR$/../abcdefg-producer2/abcdefg-producer2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../abcdefg-producer3/abcdefg-producer3.iml" filepath="$PROJECT_DIR$/../abcdefg-producer3/abcdefg-producer3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api-service-consumer/api-service-consumer.iml" filepath="$PROJECT_DIR$/../api-service-consumer/api-service-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api-service-core/api-service-core.iml" filepath="$PROJECT_DIR$/../api-service-core/api-service-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api-service-eureka/api-service-eureka.iml" filepath="$PROJECT_DIR$/../api-service-eureka/api-service-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api-service-gateway/api-service-gateway.iml" filepath="$PROJECT_DIR$/../api-service-gateway/api-service-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-service-parent.iml" filepath="$PROJECT_DIR$/api-service-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api-service-producer/api-service-producer.iml" filepath="$PROJECT_DIR$/../api-service-producer/api-service-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api-service-producer2/api-service-producer2.iml" filepath="$PROJECT_DIR$/../api-service-producer2/api-service-producer2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api-service-producer3/api-service-producer3.iml" filepath="$PROJECT_DIR$/../api-service-producer3/api-service-producer3.iml" />
+    </modules>
+  </component>
+</project>

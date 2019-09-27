@@ -1,0 +1,12 @@
+spring:
+  application:
+      name: eureka-server
+  profiles:
+      active: dev  #dev
+  security:
+      user:
+        name: panlicun
+        password: panlicun
+
+server:
+  port: 9999

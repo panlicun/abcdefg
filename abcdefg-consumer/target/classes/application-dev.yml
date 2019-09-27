@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    client:
+      ipAddress: localhost
+  profiles: dev
+
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true
+    ipAddress: ${spring.cloud.client.ipAddress}
+    hostname: ${spring.cloud.client.ipAddress}
+
+  client:
+    serviceUrl:
+      defaultZone: http://panlicun:panlicun@${spring.cloud.client.ipAddress}:9999/eureka/
+  server:
+      waitTimeInMsWhenSyncEmpty: 0
+      enable-self-preservation: false
+      eviction-interval-timer-in-ms: 4000

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="abcdefg-consumer" />
+        <module name="abcdefg-core" />
+        <module name="abcdefg-datasource" />
+        <module name="abcdefg-eureka" />
+        <module name="abcdefg-gateway" />
+        <module name="abcdefg-jwt" />
+        <module name="abcdefg-model" />
+        <module name="abcdefg-producer" />
+        <module name="abcdefg-producer2" />
+        <module name="abcdefg-producer3" />
+        <module name="api-service-consumer" />
+        <module name="api-service-core" />
+        <module name="api-service-eureka" />
+        <module name="api-service-gateway" />
+        <module name="api-service-producer" />
+        <module name="api-service-producer2" />
+        <module name="api-service-producer3" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="abcdefg-consumer" target="1.8" />
+      <module name="abcdefg-core" target="1.8" />
+      <module name="abcdefg-datasource" target="1.8" />
+      <module name="abcdefg-eureka" target="1.8" />
+      <module name="abcdefg-gateway" target="1.8" />
+      <module name="abcdefg-jwt" target="1.8" />
+      <module name="abcdefg-kernel" target="1.8" />
+      <module name="abcdefg-model" target="1.8" />
+      <module name="abcdefg-parent" target="1.8" />
+      <module name="abcdefg-producer" target="1.8" />
+      <module name="abcdefg-producer2" target="1.8" />
+      <module name="abcdefg-producer3" target="1.8" />
+      <module name="api-service-consumer" target="1.8" />
+      <module name="api-service-core" target="1.8" />
+      <module name="api-service-eureka" target="1.8" />
+      <module name="api-service-gateway" target="1.8" />
+      <module name="api-service-parent" target="1.8" />
+      <module name="api-service-producer" target="1.8" />
+      <module name="api-service-producer2" target="1.8" />
+      <module name="api-service-producer3" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

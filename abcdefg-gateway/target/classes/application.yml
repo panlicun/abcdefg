@@ -1,0 +1,10 @@
+server:
+  port: 7777
+
+spring:
+  application:
+      name: abcdefg-gateway
+  profiles:
+      active: dev  #dev
+
+
