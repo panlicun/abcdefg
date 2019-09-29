@@ -12,6 +12,11 @@ public class TestController {
     @Autowired
     SysUserService sysUserService;
 
+    @GetMapping("/oauthLogin")
+    public ResponseEntity login() {
+        return ResponseEntity.ok("OK");
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity hello(@PathVariable(value = "id") int id) {
         SysUser sysUser = sysUserService.getUserById(id);

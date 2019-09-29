@@ -1,5 +1,6 @@
 package com.plc.abcdefg.gateway.config;
 
+import com.plc.abcdefg.gateway.common.util.Md5PasswordEncoder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +22,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 //        }
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
 //        simpleGrantedAuthorities.add(new SimpleGrantedAuthority("USER"));
-        User user = new User("admin", "123456", simpleGrantedAuthorities);
+        String password = new Md5PasswordEncoder().encode("123456");
+        System.out.println(password);
+        User user = new User("admin", password, simpleGrantedAuthorities);
         return user;
 
     }

@@ -1,5 +1,6 @@
 package com.plc.abcdefg.gateway.config;
 
+import com.plc.abcdefg.gateway.common.util.Md5PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@Order(2)
 public class  SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private CustomUserDetailsService customUserDetailsService;
@@ -50,7 +50,6 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        //return new BCryptPasswordEncoder();
-        return new NoEncryptPasswordEncoder();
+        return new Md5PasswordEncoder();
     }
 }
