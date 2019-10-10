@@ -1,12 +1,11 @@
 package com.plc.abcdefg.gateway.config;
 
-import com.plc.abcdefg.gateway.config.error.MssWebResponseExceptionTranslator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -23,6 +22,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableAuthorizationServer
+@Order(3)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     // TODO: 2019/9/25 整个类需要整改 

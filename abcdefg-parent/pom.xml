@@ -54,6 +54,9 @@
         <cn.jpush.api.version>3.2.9</cn.jpush.api.version>
         <org.apache.logging.log4j>2.8.2</org.apache.logging.log4j>
         <junit.log4j>4.12</junit.log4j>
+        <log4j.version>1.2.16</log4j.version>
+        <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
+        <sharding-jdbc>2.0.3</sharding-jdbc>
     </properties>
 
     <dependencyManagement>
@@ -61,6 +64,16 @@
             <dependency>
                 <groupId>com.plc.abcdefg</groupId>
                 <artifactId>abcdefg-core</artifactId>
+                <version>${com.plc.abcdefg.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.plc.abcdefg</groupId>
+                <artifactId>kernel-model</artifactId>
+                <version>${com.plc.abcdefg.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.plc.abcdefg</groupId>
+                <artifactId>kernel-datasource</artifactId>
                 <version>${com.plc.abcdefg.version}</version>
             </dependency>
             <dependency>
@@ -139,6 +152,21 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.shardingjdbc</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>${sharding-jdbc}</version>
             </dependency>
 
             <!--spring cloud-->
