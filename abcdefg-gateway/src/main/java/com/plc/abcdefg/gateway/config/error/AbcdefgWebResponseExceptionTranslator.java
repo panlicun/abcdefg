@@ -22,7 +22,7 @@ import java.io.IOException;
  * @create 2018/12/13
  * @since 1.0.0
  */
-public class MssWebResponseExceptionTranslator implements WebResponseExceptionTranslator {
+public class AbcdefgWebResponseExceptionTranslator implements WebResponseExceptionTranslator {
     private ThrowableAnalyzer throwableAnalyzer = new DefaultThrowableAnalyzer();
 
     @Override
@@ -39,22 +39,22 @@ public class MssWebResponseExceptionTranslator implements WebResponseExceptionTr
         ase = (AuthenticationException) throwableAnalyzer.getFirstThrowableOfType(AuthenticationException.class,
                 causeChain);
         if (ase != null) {
-            return handleOAuth2Exception(new MssWebResponseExceptionTranslator.UnauthorizedException(e.getMessage(), e));
+            return handleOAuth2Exception(new AbcdefgWebResponseExceptionTranslator.UnauthorizedException(e.getMessage(), e));
         }
 
         ase = (AccessDeniedException) throwableAnalyzer
                 .getFirstThrowableOfType(AccessDeniedException.class, causeChain);
         if (ase instanceof AccessDeniedException) {
-            return handleOAuth2Exception(new MssWebResponseExceptionTranslator.ForbiddenException(ase.getMessage(), ase));
+            return handleOAuth2Exception(new AbcdefgWebResponseExceptionTranslator.ForbiddenException(ase.getMessage(), ase));
         }
 
         ase = (HttpRequestMethodNotSupportedException) throwableAnalyzer.getFirstThrowableOfType(
                 HttpRequestMethodNotSupportedException.class, causeChain);
         if (ase instanceof HttpRequestMethodNotSupportedException) {
-            return handleOAuth2Exception(new MssWebResponseExceptionTranslator.MethodNotAllowed(ase.getMessage(), ase));
+            return handleOAuth2Exception(new AbcdefgWebResponseExceptionTranslator.MethodNotAllowed(ase.getMessage(), ase));
         }
 
-        return handleOAuth2Exception(new MssWebResponseExceptionTranslator.ServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), e));
+        return handleOAuth2Exception(new AbcdefgWebResponseExceptionTranslator.ServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), e));
 
     }
 

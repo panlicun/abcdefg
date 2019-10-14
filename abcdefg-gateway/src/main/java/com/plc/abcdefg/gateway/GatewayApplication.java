@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 //@EnableEurekaClient
-@SpringBootApplication(scanBasePackages = {"com.plc.abcdefg.kernel.datasource","com.plc.abcdefg.gateway"})
+@SpringBootApplication
 public class GatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);

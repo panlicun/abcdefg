@@ -9,6 +9,7 @@ public class User {
 
     @TableId(value="id", type= IdType.AUTO)
     private int id;
+    private String account;
     private String name;
     private String password;
     private String phone;
@@ -43,5 +44,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

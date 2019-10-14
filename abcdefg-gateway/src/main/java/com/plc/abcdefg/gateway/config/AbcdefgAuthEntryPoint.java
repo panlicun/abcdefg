@@ -14,7 +14,7 @@ import java.io.IOException;
  * 用来解决匿名用户访问无权限资源时的异常
  */
 @Component
-public class CustomAuthEntryPoint implements AuthenticationEntryPoint {
+public class AbcdefgAuthEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     // TODO: 2019/9/25 这块需要详细修改

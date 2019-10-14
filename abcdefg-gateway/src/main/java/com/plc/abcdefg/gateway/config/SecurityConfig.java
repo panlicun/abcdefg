@@ -1,5 +1,6 @@
 package com.plc.abcdefg.gateway.config;
 
+import com.plc.abcdefg.gateway.auth.service.AuthService;
 import com.plc.abcdefg.gateway.common.util.Md5PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,11 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Order(2)
 public class  SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private CustomUserDetailsService customUserDetailsService;
+    private AuthService authService;
 
     @Autowired
-    public void setAnyUserDetailsService(CustomUserDetailsService customUserDetailsService){
-        this.customUserDetailsService = customUserDetailsService;
+    public void setAnyUserDetailsService(AuthService authService){
+        this.authService = authService;
     }
 
     @Override
@@ -51,7 +52,7 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(authService).passwordEncoder(passwordEncoder());
     }
 
     @Bean

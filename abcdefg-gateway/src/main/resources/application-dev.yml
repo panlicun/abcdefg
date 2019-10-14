@@ -22,7 +22,7 @@ zuul:
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
-  mapper-locations: classpath*:com/plc/abcdefg/gateway/modular/*/mapper/sqlMapperXml/*Mapper.xml
+  mapper-locations: classpath*:com/plc/abcdefg/gateway/*/mapper/sqlMapperXml/*Mapper.xml
   typeAliasesPackage: com.plc.abcdefg.kernel.model
 #  typeEnumsPackage: com.plc.abcdefg.gateway.common.enums
   global-config:

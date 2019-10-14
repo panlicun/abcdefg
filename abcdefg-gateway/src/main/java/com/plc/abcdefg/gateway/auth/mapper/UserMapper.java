@@ -1,11 +1,10 @@
-package com.plc.abcdefg.gateway.modular.user.mapper;
+package com.plc.abcdefg.gateway.auth.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 import com.plc.abcdefg.kernel.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 
 /**

@@ -1,5 +1,7 @@
 package com.plc.abcdefg.gateway.config;
 
+import com.plc.abcdefg.gateway.auth.service.AuthService;
+import com.plc.abcdefg.gateway.config.error.AbcdefgWebResponseExceptionTranslator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +40,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private AuthService authService;
     @Autowired
-    private CustomAuthEntryPoint customAuthEntryPoint;
+    private AbcdefgAuthEntryPoint abcdefgAuthEntryPoint;
     @Autowired
-    private CustomAccessDeniedHandler customAccessDeniedHandler;
+    private AbcdefgAccessDeniedHandler abcdefgAccessDeniedHandler;
 
 
     @Override
@@ -50,8 +52,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         security.allowFormAuthenticationForClients()
                 .checkTokenAccess("isAuthenticated()")  // 开启/oauth/check_token验证端口认证权限访问
                 .tokenKeyAccess("permitAll()")         // 开启/oauth/token_key验证端口无权限访问
-                .authenticationEntryPoint(customAuthEntryPoint)  //用来解决匿名用户访问无权限资源时的异常
-                .accessDeniedHandler(customAccessDeniedHandler); //用来解决认证过的用户访问无权限资源时的异常
+                .authenticationEntryPoint(abcdefgAuthEntryPoint)  //用来解决匿名用户访问无权限资源时的异常
+                .accessDeniedHandler(abcdefgAccessDeniedHandler); //用来解决认证过的用户访问无权限资源时的异常
         log.info("AuthorizationServerSecurityConfigurer is complete");
     }
 
@@ -69,16 +71,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient("android")
                 .scopes("read")
-                .secret("android")
+                .secret("673d4fe71b5fa74b6c59935d41e93df5eb7ee4271404f784")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .and()
                 .withClient("webapp")
                 .scopes("read")
-                .authorizedGrantTypes("implicit")
-                .and()
-                .withClient("browser")
-                .authorizedGrantTypes("refresh_token", "password")
-                .scopes("read");
+                .authorizedGrantTypes("implicit");
         log.info("ClientDetailsServiceConfigurer is complete!");
     }
 
@@ -89,10 +87,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
-                .tokenStore(jwtTokenStore()).
-                userDetailsService(customUserDetailsService)  //刷新token的时候需要改类进行比对
+                .tokenStore(jwtTokenStore())
+                .userDetailsService(authService)  //刷新token的时候需要改类进行比对
                 .tokenEnhancer(jwtTokenConverter())
-                .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager)
+                .exceptionTranslator(new AbcdefgWebResponseExceptionTranslator());  //统一异常处理
     }
 
     @Bean
@@ -103,7 +102,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     protected JwtAccessTokenConverter jwtTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("springcloud123");
+        converter.setSigningKey("abcdefg");
         return converter;
     }
 }

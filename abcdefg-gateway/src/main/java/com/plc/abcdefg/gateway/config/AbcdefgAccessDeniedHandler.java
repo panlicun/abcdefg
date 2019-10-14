@@ -15,7 +15,7 @@ import java.io.IOException;
  *用来解决认证过的用户访问无权限资源时的异常
  */
 @Component
-public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+public class AbcdefgAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
         // TODO: 2019/9/25 异常信息需要处理
