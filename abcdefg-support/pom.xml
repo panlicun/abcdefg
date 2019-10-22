@@ -10,18 +10,39 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-
     <packaging>pom</packaging>
 
     <name>abcdefg-support</name>
     <description>abcdefg架构支撑</description>
     <url>http://www.example.com</url>
+
     <artifactId>abcdefg-support</artifactId>
     <version>1.0.0</version>
 
     <modules>
-        <module>../abcdefg-eureka</module>
+        <module>abcdefg-eureka</module>
     </modules>
+
+    <!--<dependencyManagement>-->
+        <!--<dependencies>-->
+            <!--&lt;!&ndash;spring cloud&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.cloud</groupId>-->
+                <!--<artifactId>spring-cloud-dependencies</artifactId>-->
+                <!--<version>${spring-cloud.version}</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
+        <!--</dependencies>-->
+    <!--</dependencyManagement>-->
+
+    <!--<dependencies>-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>-->
+            <!--<version>2.0.2.RELEASE</version>-->
+        <!--</dependency>-->
+    <!--</dependencies>-->
 
 
 </project>

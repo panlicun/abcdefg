@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// TODO: 2019/9/25 类注释得设置一下 
 /**
  *用来解决认证过的用户访问无权限资源时的异常
  */

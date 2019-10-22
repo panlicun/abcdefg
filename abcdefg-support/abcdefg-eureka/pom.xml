@@ -1,17 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>abcdefg-parent</artifactId>
+        <artifactId>abcdefg-support</artifactId>
         <groupId>com.plc.abcdefg</groupId>
         <version>1.0.0</version>
-        <relativePath>../abcdefg-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>abcdefg-gateway</artifactId>
+    <artifactId>abcdefg-eureka</artifactId>
     <packaging>jar</packaging>
 
-    <name>abcdefg-gateway</name>
+    <name>abcdefg-eureka</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -22,33 +21,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.plc.abcdefg</groupId>
-            <artifactId>kernel-datasource</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.plc.abcdefg</groupId>
-            <artifactId>kernel-model</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
-		<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

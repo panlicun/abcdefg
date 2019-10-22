@@ -24,7 +24,6 @@ zuul:
 mybatis-plus:
   mapper-locations: classpath*:com/plc/abcdefg/gateway/*/mapper/sqlMapperXml/*Mapper.xml
   typeAliasesPackage: com.plc.abcdefg.kernel.model
-#  typeEnumsPackage: com.plc.abcdefg.gateway.common.enums
   global-config:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
     db-column-underline: false
@@ -44,15 +43,15 @@ mybatis-plus:
 
 
 
-#eureka:
-#  instance:
-#    perferIpAddress: true   #如果true,使用IP(ipAddress)注册，如果不是则使用主机名（hostname），如果没有ipAddress属性，spring自动寻找回环IP的第一个
-#    ipAddress: ${spring.cloud.client.ipAddress}  #如果定义该属性，默认直接取该属性配置的IP
-#    instanceId: ${spring.cloud.client.ipAddress}:${server.port}
-#    hostname: ${spring.cloud.client.ipAddress}   #如果没有的话，eureka地址不可用
-#  client:
-#    registerWithEureka: true    #表示本应用是否是向注册中心注册自己（配置高可用的时候需要设置为true,也就是默认值）
-#    fetchRegistry: true   #是否去检索服务
-#    serviceUrl:
-#      defaultZone: http://${spring.cloud.client.ipAddress}:${server.port}/eureka/
+eureka:
+  instance:
+    perferIpAddress: true   #如果true,使用IP(ipAddress)注册，如果不是则使用主机名（hostname），如果没有ipAddress属性，spring自动寻找回环IP的第一个
+    ipAddress: ${spring.cloud.client.ipAddress}  #如果定义该属性，默认直接取该属性配置的IP
+    instanceId: ${spring.cloud.client.ipAddress}:${server.port}
+    hostname: ${spring.cloud.client.ipAddress}   #如果没有的话，eureka地址不可用
+  client:
+    registerWithEureka: true    #表示本应用是否是向注册中心注册自己（配置高可用的时候需要设置为true,也就是默认值）
+    fetchRegistry: true   #是否去检索服务
+    serviceUrl:
+      defaultZone: http://${spring.cloud.client.ipAddress}:${server.port}/eureka/
 

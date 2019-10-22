@@ -10,7 +10,6 @@
     <version>1.0.0</version>
 
     <modules>
-        <module>../abcdefg-eureka</module>
         <module>../abcdefg-producer</module>
         <module>../abcdefg-producer2</module>
         <module>../abcdefg-producer3</module>
@@ -18,6 +17,7 @@
         <module>../abcdefg-core</module>
 		<module>../abcdefg-gateway</module>
         <module>../abcdefg-kernel</module>
+        <module>../abcdefg-support</module>
     </modules>
 
     <parent>
@@ -168,7 +168,6 @@
                 <artifactId>sharding-jdbc-core</artifactId>
                 <version>${sharding-jdbc}</version>
             </dependency>
-
             <!--spring cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
