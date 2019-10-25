@@ -1,4 +1,4 @@
-package com.plc.abcdefg.gateway.config;
+package com.plc.abcdefg.gateway.config.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

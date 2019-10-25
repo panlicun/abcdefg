@@ -1,4 +1,4 @@
-package com.plc.abcdefg.gateway.config;
+package com.plc.abcdefg.gateway.config.security;
 
 import com.plc.abcdefg.gateway.auth.service.AuthService;
 import com.plc.abcdefg.gateway.common.util.Md5PasswordEncoder;
@@ -32,7 +32,7 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 登出页
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
                 // 其余所有请求全部需要鉴权认证
-                .and().authorizeRequests().antMatchers("/oauth/**").permitAll()
+                .and().authorizeRequests().antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
 
                 // 由于使用的是JWT，我们这里不需要csrf

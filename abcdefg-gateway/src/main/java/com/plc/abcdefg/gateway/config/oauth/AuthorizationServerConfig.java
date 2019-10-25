@@ -1,7 +1,10 @@
-package com.plc.abcdefg.gateway.config;
+package com.plc.abcdefg.gateway.config.oauth;
 
+import com.alibaba.fastjson.JSON;
 import com.plc.abcdefg.gateway.auth.service.AuthService;
 import com.plc.abcdefg.gateway.config.error.AbcdefgWebResponseExceptionTranslator;
+import com.plc.abcdefg.kernel.model.common.InfoEnum;
+import com.plc.abcdefg.kernel.model.common.ResponseMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.types.RedisClientInfo;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -16,6 +21,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
@@ -51,9 +58,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients()
                 .checkTokenAccess("isAuthenticated()")  // 开启/oauth/check_token验证端口认证权限访问
-                .tokenKeyAccess("permitAll()")         // 开启/oauth/token_key验证端口无权限访问
-                .authenticationEntryPoint(abcdefgAuthEntryPoint)  //用来解决匿名用户访问无权限资源时的异常
-                .accessDeniedHandler(abcdefgAccessDeniedHandler); //用来解决认证过的用户访问无权限资源时的异常
+                .tokenKeyAccess("permitAll()");         // 开启/oauth/token_key验证端口无权限访问
+        //当权限不足时返回
+        security.accessDeniedHandler((request, response, e) -> {
+            response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+            response.getWriter()
+                    .write(JSON.toJSONString(new ResponseMsg(InfoEnum.PERMISSION_DENIED)));
+        });
+        //当token不正确时返回
+        security.authenticationEntryPoint((request, response, e) -> {
+            response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+            response.getWriter()
+                    .write(JSON.toJSONString(new ResponseMsg(InfoEnum.TOKEN_ERROR)));
+        });
         log.info("AuthorizationServerSecurityConfigurer is complete");
     }
 
@@ -67,16 +84,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        clients.withClientDetails(clientDetails());
-        clients.inMemory()
-                .withClient("android")
-                .scopes("read")
-                .secret("673d4fe71b5fa74b6c59935d41e93df5eb7ee4271404f784")
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                .and()
-                .withClient("webapp")
-                .scopes("read")
-                .authorizedGrantTypes("implicit");
+        clients.withClientDetails(clientDetails());
+//        clients.inMemory()
+//                .withClient("android")
+//                .scopes("read")
+//                .secret("673d4fe71b5fa74b6c59935d41e93df5eb7ee4271404f784")
+//                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
+//                .and()
+//                .withClient("webapp")
+//                .scopes("read")
+//                .authorizedGrantTypes("implicit");
         log.info("ClientDetailsServiceConfigurer is complete!");
     }
 
@@ -105,4 +122,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         converter.setSigningKey("abcdefg");
         return converter;
     }
+
+    @Bean
+    public ClientDetailsService clientDetails() {
+        return new JdbcClientDetailsService(dataSource);
+    }
+
 }

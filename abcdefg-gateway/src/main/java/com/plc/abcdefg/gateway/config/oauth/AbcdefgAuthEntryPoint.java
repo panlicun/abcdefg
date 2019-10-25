@@ -1,4 +1,4 @@
-package com.plc.abcdefg.gateway.config;
+package com.plc.abcdefg.gateway.config.oauth;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.security.core.AuthenticationException;

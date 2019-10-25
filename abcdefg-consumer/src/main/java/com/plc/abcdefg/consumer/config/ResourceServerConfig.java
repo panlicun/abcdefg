@@ -36,14 +36,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources
-                .resourceId("WRIGTH")
+                .resourceId("test")
                 .tokenStore(jwtTokenStore());
     }
 
     @Bean
     protected JwtAccessTokenConverter jwtTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("springcloud123");
+        converter.setSigningKey("abcdefg");
         return converter;
     }
 

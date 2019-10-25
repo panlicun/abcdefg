@@ -14,7 +14,7 @@ eureka:
 
   client:
     serviceUrl:
-      defaultZone: http://panlicun:panlicun@${spring.cloud.client.ipAddress}:9999/eureka/
+      defaultZone: http://panlicun:panlicun@localhost:9999/eureka/
   server:
       waitTimeInMsWhenSyncEmpty: 0
       enable-self-preservation: false

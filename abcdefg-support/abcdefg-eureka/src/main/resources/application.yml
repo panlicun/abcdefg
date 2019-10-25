@@ -1,6 +1,6 @@
 spring:
   application:
-      name: eureka-server
+      name: abcdefg-eureka
   profiles:
       active: dev  #dev
   security:
