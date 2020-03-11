@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.plc.abcdefg.kernel.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 
 /**
@@ -15,6 +16,7 @@ import org.apache.ibatis.annotations.Param;
  * @author stylefeng
  * @since 2017-07-11
  */
+@Repository
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 

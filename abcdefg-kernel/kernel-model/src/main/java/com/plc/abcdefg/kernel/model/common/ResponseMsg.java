@@ -22,21 +22,21 @@ public class ResponseMsg {
         this.count = count;
     }
 
-    public ResponseMsg(InfoEnum infoEnum, Object data) {
-        this.code = infoEnum.getCode();
-        this.message = infoEnum.getMessage();
+    public ResponseMsg(ResponseMsgEnum responseMsgEnum, Object data) {
+        this.code = responseMsgEnum.getCode();
+        this.message = responseMsgEnum.getMessage();
         this.data = data;
     }
 
-    public ResponseMsg(InfoEnum infoEnum, Object data, Integer count) {
-        this.code = infoEnum.getCode();
-        this.message = infoEnum.getMessage();
+    public ResponseMsg(ResponseMsgEnum responseMsgEnum, Object data, Integer count) {
+        this.code = responseMsgEnum.getCode();
+        this.message = responseMsgEnum.getMessage();
         this.data = data;
         this.count = count;
     }
-    public ResponseMsg(InfoEnum infoEnum) {
-        this.code = infoEnum.getCode();
-        this.message = infoEnum.getMessage();
+    public ResponseMsg(ResponseMsgEnum responseMsgEnum) {
+        this.code = responseMsgEnum.getCode();
+        this.message = responseMsgEnum.getMessage();
     }
 
     public Integer getCode() {

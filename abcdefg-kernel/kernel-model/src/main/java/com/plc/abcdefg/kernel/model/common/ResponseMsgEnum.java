@@ -1,6 +1,6 @@
 package com.plc.abcdefg.kernel.model.common;
 
-public enum InfoEnum {
+public enum ResponseMsgEnum {
 
         SUCCESS(0,"操作成功"),
         CONNECT_FAIL(101,"连接失败"),
@@ -22,7 +22,7 @@ public enum InfoEnum {
          */
         AUTH_REQUEST_ERROR(400, "账号密码错误");
 
-        InfoEnum(int code, String message) {
+        ResponseMsgEnum(int code, String message) {
                 this.code = code;
                 this.message = message;
         }

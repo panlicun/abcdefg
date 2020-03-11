@@ -3,7 +3,7 @@ package com.plc.abcdefg.gateway.config.oauth;
 import com.alibaba.fastjson.JSON;
 import com.plc.abcdefg.gateway.auth.service.AuthService;
 import com.plc.abcdefg.gateway.config.error.AbcdefgWebResponseExceptionTranslator;
-import com.plc.abcdefg.kernel.model.common.InfoEnum;
+import com.plc.abcdefg.kernel.model.common.ResponseMsgEnum;
 import com.plc.abcdefg.kernel.model.common.ResponseMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.types.RedisClientInfo;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -63,13 +62,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         security.accessDeniedHandler((request, response, e) -> {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.getWriter()
-                    .write(JSON.toJSONString(new ResponseMsg(InfoEnum.PERMISSION_DENIED)));
+                    .write(JSON.toJSONString(new ResponseMsg(ResponseMsgEnum.PERMISSION_DENIED)));
         });
         //当token不正确时返回
         security.authenticationEntryPoint((request, response, e) -> {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.getWriter()
-                    .write(JSON.toJSONString(new ResponseMsg(InfoEnum.TOKEN_ERROR)));
+                    .write(JSON.toJSONString(new ResponseMsg(ResponseMsgEnum.TOKEN_ERROR)));
         });
         log.info("AuthorizationServerSecurityConfigurer is complete");
     }

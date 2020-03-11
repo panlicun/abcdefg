@@ -21,8 +21,6 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        String str = new Md5PasswordEncoder().encode("abcdefg");
-        System.out.println(str);
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
         com.plc.abcdefg.kernel.model.User user = userMapper.getByAccount(name);
         if(null == user){

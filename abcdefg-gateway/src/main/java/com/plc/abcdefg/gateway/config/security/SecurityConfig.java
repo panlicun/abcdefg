@@ -29,6 +29,7 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http    // 配置登陆页/login并允许访问
                 .formLogin().permitAll()
+//                .formLogin().loginPage("http://www.baidu.com").loginProcessingUrl("http://www.taobao.com")
                 // 登出页
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
                 // 其余所有请求全部需要鉴权认证
