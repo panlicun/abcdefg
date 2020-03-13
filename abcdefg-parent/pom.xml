@@ -57,6 +57,7 @@
         <log4j.version>1.2.16</log4j.version>
         <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
         <sharding-jdbc>2.0.3</sharding-jdbc>
+        <org.yaml-snakeyaml>1.23</org.yaml-snakeyaml>
     </properties>
 
     <dependencyManagement>
@@ -167,6 +168,11 @@
                 <groupId>io.shardingjdbc</groupId>
                 <artifactId>sharding-jdbc-core</artifactId>
                 <version>${sharding-jdbc}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${org.yaml-snakeyaml}</version>
             </dependency>
             <!--spring cloud-->
             <dependency>
