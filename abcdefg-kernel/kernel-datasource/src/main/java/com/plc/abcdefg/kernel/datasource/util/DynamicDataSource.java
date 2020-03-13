@@ -15,21 +15,10 @@ import java.util.Map;
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
 
-    private Map<Object, Object> datasources;
 
-    public DynamicDataSource() {
-        datasources = new HashMap<>();
-
-        super.setTargetDataSources(datasources);
-
-    }
-
-    public <T extends DataSource> void addDataSource(DataSourceKey key, T data) {
-        datasources.put(key, data);
-    }
-
+    @Override
     protected Object determineCurrentLookupKey() {
-        return DataSourceHolder.getDataSourceKey();
+        return DataSourceHolder.getDataSourceType();
     }
 
 }

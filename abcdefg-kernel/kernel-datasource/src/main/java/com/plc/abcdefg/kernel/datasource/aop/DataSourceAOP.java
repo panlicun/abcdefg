@@ -4,38 +4,65 @@ import com.plc.abcdefg.kernel.datasource.annotation.DataSource;
 import com.plc.abcdefg.kernel.datasource.constant.DataSourceKey;
 import com.plc.abcdefg.kernel.datasource.util.DataSourceHolder;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Method;
 
 /**
  * 切换数据源Advice
  */
 @Aspect
-@Order(-1) // 保证该AOP在@Transactional之前执行
-public class DataSourceAOP {
+@Component
+public class DataSourceAOP implements Ordered {
     private Logger log = LoggerFactory.getLogger(DataSourceAOP.class);
 
-    @Before("@annotation(ds)")
-    public void changeDataSource(JoinPoint point, DataSource ds) throws Throwable {
-        String dsId = ds.name();
-        try {
-            DataSourceKey dataSourceKey = DataSourceKey.valueOf(dsId);
-            DataSourceHolder.setDataSourceKey(dataSourceKey);
-        } catch (Exception e) {
-            log.error("数据源[{}]不存在，使用默认数据源 > {}", ds.name(), point.getSignature());
-        }
-
+    @Pointcut(value = "@annotation(com.plc.abcdefg.kernel.datasource.annotation.DataSource)")
+    private void cut() {
 
     }
 
-    @After("@annotation(ds)")
-    public void restoreDataSource(JoinPoint point, DataSource ds) {
-    	log.debug("Revert DataSource : {transIdo} > {}", ds.name(), point.getSignature());
-        DataSourceHolder.clearDataSourceKey();
+    @Around("cut()")
+    public Object around(ProceedingJoinPoint point) throws Throwable {
+
+        Signature signature = point.getSignature();
+        MethodSignature methodSignature = null;
+        if (!(signature instanceof MethodSignature)) {
+            throw new IllegalArgumentException("该注解只能用于方法");
+        }
+        methodSignature = (MethodSignature) signature;
+
+        Object target = point.getTarget();
+        Method currentMethod = target.getClass().getMethod(methodSignature.getName(), methodSignature.getParameterTypes());
+
+        DataSource datasource = currentMethod.getAnnotation(DataSource.class);
+        if (datasource != null) {
+            DataSourceHolder.setDataSourceType(datasource.name());
+            log.debug("设置数据源为：" + datasource.name());
+        }
+
+        try {
+            return point.proceed();
+        } finally {
+            log.debug("清空数据源信息！");
+            DataSourceHolder.clearDataSourceType();
+        }
+    }
+
+
+    /**
+     * aop的顺序要早于spring的事务
+     */
+    @Override
+    public int getOrder() {
+        return 1;
     }
 
 }

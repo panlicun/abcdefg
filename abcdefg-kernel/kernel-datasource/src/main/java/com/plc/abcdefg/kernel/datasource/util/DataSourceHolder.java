@@ -9,20 +9,29 @@ import com.plc.abcdefg.kernel.datasource.constant.DataSourceKey;
  */
 public class DataSourceHolder {
 
-	//注意使用ThreadLocal，微服务下游建议使用信号量
-    private static final ThreadLocal<DataSourceKey> dataSourceKey = new ThreadLocal<>();
+    private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
 
-    //得到当前的数据库连接
-    public static DataSourceKey getDataSourceKey() {
-        return dataSourceKey.get();
+    /**
+     * 设置数据源类型
+     *
+     * @param dataSourceType 数据库类型
+     */
+    public static void setDataSourceType(String dataSourceType) {
+        contextHolder.set(dataSourceType);
     }
-    //设置当前的数据库连接
-    public static void setDataSourceKey(DataSourceKey type) {
-        dataSourceKey.set(type);
+
+    /**
+     * 获取数据源类型
+     */
+    public static String getDataSourceType() {
+        return contextHolder.get();
     }
-    //清除当前的数据库连接
-    public static void clearDataSourceKey() {
-        dataSourceKey.remove();
+
+    /**
+     * 清除数据源类型
+     */
+    public static void clearDataSourceType() {
+        contextHolder.remove();
     }
 
 
