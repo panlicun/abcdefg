@@ -2,10 +2,13 @@ package com.plc.abcdefg.kernel.datasource;
 
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.plc.abcdefg.kernel.datasource.aop.DataSourceAOP;
 import com.plc.abcdefg.kernel.datasource.util.DynamicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -22,6 +25,8 @@ import java.util.TreeMap;
 
 
 @Configuration
+@Import({DataSourceAOP.class})
+@EnableConfigurationProperties({DefaultProperties.class})
 public class DataSourceAutoConfig {
 
 	@Autowired

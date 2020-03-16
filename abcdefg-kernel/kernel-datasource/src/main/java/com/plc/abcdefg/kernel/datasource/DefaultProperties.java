@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import java.sql.SQLException;
 
 
-@Component
 @ConfigurationProperties(prefix = "spring.datasource")
 public class DefaultProperties {
 

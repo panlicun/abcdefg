@@ -1,22 +1,12 @@
 # kernel-datasource
 **kernel-datasource是数据源模块，需要连接数据库的模型可以通过引入该包实现连接数据库的功能。**
 **kernel-datasource使用的druid数据库连接工具。**
+
 **注意事项：**
-**1. 首先需要让项目扫描到我们的包，包路径为**
 
-`com.plc.abcdefg.kernel.datasource`
+**yml文件必须为application.yml否则无法读取yml中的数据库相关配置**
 
-可以使用
-
-`@SpringBootApplication(scanBasePackages = {"com.plc.abcdefg.kernel.datasource"})`
-
-也可以使用
-
-`@ComponentScan(basePackages = {"com.plc.abcdefg.kernel.datasource"})`
-
-**2. yml文件必须为application.yml否则无法读取yml中的数据库相关配置**
-
-**3. 数据源的默认路径为**
+**数据源的默认路径为**
 ```yaml
 spring:
 	datasource:  

@@ -20,7 +20,6 @@ import java.lang.reflect.Method;
  * 切换数据源Advice
  */
 @Aspect
-@Component
 public class DataSourceAOP implements Ordered {
     private Logger log = LoggerFactory.getLogger(DataSourceAOP.class);
 

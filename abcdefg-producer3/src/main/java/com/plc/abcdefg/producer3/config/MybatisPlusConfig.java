@@ -18,7 +18,6 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.plc.abcdefg.kernel.datasource"})  //数据源的包
 public class MybatisPlusConfig {
 
     /**
