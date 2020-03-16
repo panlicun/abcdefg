@@ -4,7 +4,7 @@
 **注意事项：**
 **1. 首先需要让项目扫描到我们的包，包路径为**
 
-`com.plc.abcdefg.kernel`
+`com.plc.abcdefg.kernel.datasource`
 
 可以使用
 
