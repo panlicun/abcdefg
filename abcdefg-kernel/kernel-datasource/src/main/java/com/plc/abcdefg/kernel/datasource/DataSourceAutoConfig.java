@@ -2,20 +2,13 @@ package com.plc.abcdefg.kernel.datasource;
 
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
-import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.plc.abcdefg.kernel.datasource.constant.DataSourceKey;
 import com.plc.abcdefg.kernel.datasource.util.DynamicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.yaml.snakeyaml.Yaml;
 
 import javax.sql.DataSource;
@@ -23,14 +16,12 @@ import java.io.FileInputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 
 @Configuration
-@EnableTransactionManagement(order = 2)//由于引入多数据源，所以让spring事务的aop要在多数据源切换aop的后面
 public class DataSourceAutoConfig {
 
 	@Autowired
@@ -40,7 +31,6 @@ public class DataSourceAutoConfig {
 	private Environment env;
 
 	//解析yml文件
-	@Bean
 	public Map<String,Object> analysisYmal() throws Exception{
 		Yaml yaml = new Yaml();
 		Map ymalMap = new HashMap();
@@ -117,176 +107,6 @@ public class DataSourceAutoConfig {
 
 	}
 
-    // TODO: 2020/3/13 测试mybatis的分页插件 
-    // TODO: 2020/3/13 测试乐观锁插件是否可用 
 
-	/**
-	 * mybatis-plus分页插件
-	 */
-	@Bean
-	public PaginationInterceptor paginationInterceptor() {
-		return new PaginationInterceptor();
-	}
-
-	/**
-	 * 乐观锁mybatis插件
-	 */
-	@Bean
-	public OptimisticLockerInterceptor optimisticLockerInterceptor() { return new OptimisticLockerInterceptor(); }
-
-
-
-//	@Autowired
-//	MutiDataSourceProperties mutiDataSourceProperties;
-//
-//
-//	/**
-//	 * 另一个数据源
-//	 */
-//	private DruidDataSource bizDataSource() {
-//		DruidDataSource dataSource = new DruidDataSource();
-//		druidProperties.config(dataSource);
-//		mutiDataSourceProperties.config(dataSource);
-//		return dataSource;
-//	}
-//
-//	/**
-//	 * guns的数据源
-//	 */
-//	private DruidDataSource dataSourceApiService(){
-//		DruidDataSource dataSource = new DruidDataSource();
-//		druidProperties.config(dataSource);
-//		return dataSource;
-//	}
-//
-//	/**
-//	 * 单数据源连接池配置
-//	 */
-//	@Bean
-//	@ConditionalOnProperty(prefix = "guns", name = "muti-datasource-open", havingValue = "false")
-//	public DruidDataSource singleDatasource() {
-//		return dataSourceApiService();
-//	}
-//
-//	/**
-//	 * 多数据源连接池配置
-//	 */
-//	@Bean
-//	@ConditionalOnProperty(prefix = "guns", name = "muti-datasource-open", havingValue = "true")
-//	public DynamicDataSource mutiDataSource() {
-//
-//		DruidDataSource dataSourceGuns = dataSourceApiService();
-//		DruidDataSource bizDataSource = bizDataSource();
-//
-//		try {
-//			dataSourceGuns.init();
-//			bizDataSource.init();
-//		}catch (SQLException sql){
-//			sql.printStackTrace();
-//		}
-//
-//		DynamicDataSource dynamicDataSource = new DynamicDataSource();
-//		HashMap<Object, Object> hashMap = new HashMap();
-//		hashMap.put(DatasourceEnum.DATA_SOURCE_API_SERVICE, dataSourceGuns);
-//		hashMap.put(DatasourceEnum.DATA_SOURCE_BIZ, bizDataSource);
-//		dynamicDataSource.setTargetDataSources(hashMap);
-//		dynamicDataSource.setDefaultTargetDataSource(dataSourceGuns);
-//		return dynamicDataSource;
-//	}
-//
-//	/**
-//	 * mybatis-plus分页插件
-//	 */
-//	@Bean
-//	public PaginationInterceptor paginationInterceptor() {
-//		return new PaginationInterceptor();
-//	}
-//
-//	/**
-//	 * 数据范围mybatis插件
-//	 */
-//	@Bean
-//	public DataScopeInterceptor dataScopeInterceptor() {
-//		return new DataScopeInterceptor();
-//	}
-//
-//	/**
-//	 * 乐观锁mybatis插件
-//	 */
-//	@Bean
-//	public OptimisticLockerInterceptor optimisticLockerInterceptor() { return new OptimisticLockerInterceptor(); }
-
-
-
-
-	///-------------------------------------------------------------
-
-//	@Autowired
-//	DruidProperties druidProperties;
-//
-//
-//	private DruidDataSource dataSourceApiService(){
-//		DruidDataSource dataSource = new DruidDataSource();
-//		druidProperties.config(dataSource);
-//		return dataSource;
-//	}
-//
-//
-//	@Primary
-//    @Bean // 只需要纳入动态数据源到spring容器
-//    public DataSource dataSource() {
-//        DynamicDataSource dataSource = new DynamicDataSource();
-//        DataSource coreDataSource =  dataSourceCore() ;
-//        DataSource logDataSource =  dataSourceLog();
-//        dataSource.addDataSource(DataSourceKey.core, coreDataSource);
-//        dataSource.addDataSource(DataSourceKey.log, logDataSource);
-//        dataSource.setDefaultTargetDataSource(coreDataSource);
-//        return dataSource;
-//    }
-//
-//
-//    @Bean(name = "sqlSessionFactory")
-//    public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource)
-//            throws Exception {
-//    	MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
-//		sqlSessionFactory.setDataSource(dataSource);
-////		//默认扫描com.open.*****.dao.*.xml
-////		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:com/plc/abcdefg/**/modular/**/mapper/sqlMapperXml/*.xml"));
-////		sqlSessionFactory.setTypeAliasesPackage("com.plc.abcdefg.kernel.model");
-////
-////		MybatisConfiguration configuration = new MybatisConfiguration();
-////		// configuration.setDefaultScriptingLanguage(MybatisXMLLanguageDriver.class);
-////		configuration.setLogImpl(org.apache.ibatis.logging.stdout.StdOutImpl.class);
-////		configuration.setMapUnderscoreToCamelCase(true);
-////		configuration.setCacheEnabled(false);
-////		sqlSessionFactory.setConfiguration(configuration);
-//		// sqlSessionFactory.setPlugins(new Interceptor[]{
-//		// //PerformanceInterceptor(),OptimisticLockerInterceptor()
-//		// paginationInterceptor() //添加分页功能
-//		// });
-//		// sqlSessionFactory.setGlobalConfig(globalConfiguration());
-//		return sqlSessionFactory.getObject();
-//    }
-//
-//
-//    @Bean // 将数据源纳入spring事物管理
-//    public DataSourceTransactionManager transactionManager(@Qualifier("dataSource")  DataSource dataSource) {
-//        return new DataSourceTransactionManager(dataSource);
-//    }
-//
-//	/**
-//	 * mybatis-plus分页插件
-//	 */
-//	@Bean
-//	public PaginationInterceptor paginationInterceptor() {
-//		return new PaginationInterceptor();
-//	}
-//
-//
-//	/**
-//	 * 乐观锁mybatis插件
-//	 */
-//	@Bean
-//	public OptimisticLockerInterceptor optimisticLockerInterceptor() { return new OptimisticLockerInterceptor(); }
    
 }

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TestController {
 
@@ -35,6 +37,21 @@ public class TestController {
     @PostMapping("/saveUser")
     public void saveUser(@RequestBody User sysUser) throws Exception{
         sysUserService.saveSysUser(sysUser);
+    }
+
+    @GetMapping("/queryAll")
+    public ResponseEntity queryAll() throws Exception{
+        List<User> userList = sysUserService.queryAll();
+        return ResponseEntity.ok(userList);
+    }
+
+    @GetMapping("/updateUser")
+    public ResponseEntity updateUser() throws Exception{
+        User user = new User();
+        user.setId(1);
+        user.setPhone("13888888888");
+        sysUserService.updateUser(user);
+        return ResponseEntity.ok("OK");
     }
 
 }

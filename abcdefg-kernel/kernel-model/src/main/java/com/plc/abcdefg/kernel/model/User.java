@@ -2,6 +2,7 @@ package com.plc.abcdefg.kernel.model;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotations.Version;
 import com.baomidou.mybatisplus.enums.IdType;
 
 @TableName("user")
@@ -13,6 +14,8 @@ public class User {
     private String name;
     private String password;
     private String phone;
+    @Version
+    private int version;
 
     public int getId() {
         return id;
@@ -52,5 +55,13 @@ public class User {
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }
