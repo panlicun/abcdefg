@@ -5,8 +5,8 @@ spring:
       active: dev  #dev
   security:
       user:
-        name: panlicun
-        password: panlicun
+        name: abcdefg
+        password: abcdefg
 
 server:
   port: 9999

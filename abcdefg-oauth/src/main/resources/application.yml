@@ -1,0 +1,34 @@
+server:
+  port: 8004 #项目端口
+
+spring:
+  application:
+    name: oauth
+  profiles:
+    active: dev  #dev
+
+###################  mybatis-plus配置  ###################
+mybatis-plus:
+  mapper-locations: classpath*:com/plc/abcdefg/oauth/*/mapper/sqlMapperXml/*Mapper.xml
+  typeAliasesPackage: com.plc.abcdefg.kernel.model
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+jwt:
+  signingKey: abcdefg
+
+logging:
+  config: classpath:logback.xml
+  level:
+    root: info

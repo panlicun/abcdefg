@@ -35,9 +35,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources
-                .resourceId("test")
-                .tokenStore(jwtTokenStore());
+        //设置资源ID，需要在授权模块中的resources_ids里添加上这个ID，如果授权模块添加，则必须添加
+//        resources
+//                .resourceId("test")
+//                .tokenStore(jwtTokenStore());
+    }
+
+
+    @Bean
+    public TokenStore jwtTokenStore() {
+        return new JwtTokenStore(jwtTokenConverter());
     }
 
     @Bean
@@ -47,10 +54,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         return converter;
     }
 
-    @Bean
-    public TokenStore jwtTokenStore() {
-        return new JwtTokenStore(jwtTokenConverter());
-    }
+
 
 
 }

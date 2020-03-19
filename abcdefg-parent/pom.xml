@@ -18,6 +18,7 @@
 		<module>../abcdefg-gateway</module>
         <module>../abcdefg-kernel</module>
         <module>../abcdefg-support</module>
+        <module>../abcdefg-oauth</module>
     </modules>
 
     <parent>

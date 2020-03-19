@@ -1,12 +1,5 @@
 package com.plc.abcdefg.kernel.datasource.util;
 
-import com.plc.abcdefg.kernel.datasource.constant.DataSourceKey;
-
-/**
- * 用于数据源切换
- * @author owen
- * @create 2017年7月2日
- */
 public class DataSourceHolder {
 
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
