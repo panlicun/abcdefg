@@ -59,6 +59,8 @@
         <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
         <sharding-jdbc>2.0.3</sharding-jdbc>
         <org.yaml-snakeyaml>1.23</org.yaml-snakeyaml>
+        <commons-lang3.version>3.7</commons-lang3.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
     </properties>
 
     <dependencyManagement>
@@ -174,6 +176,16 @@
                 <groupId>org.yaml</groupId>
                 <artifactId>snakeyaml</artifactId>
                 <version>${org.yaml-snakeyaml}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
             </dependency>
             <!--spring cloud-->
             <dependency>

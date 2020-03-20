@@ -5,6 +5,8 @@ import com.plc.abcdefg.oauth.auth.service.AuthService;
 import com.plc.abcdefg.oauth.config.error.AbcdefgWebResponseExceptionTranslator;
 import com.plc.abcdefg.kernel.model.common.ResponseMsgEnum;
 import com.plc.abcdefg.kernel.model.common.ResponseMsg;
+import com.plc.abcdefg.oauth.util.Md5PasswordEncoder;
+import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -31,10 +35,9 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableAuthorizationServer
-@Order(3)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    // TODO: 2019/9/25 整个类需要整改 
+    // TODO: 2019/9/25 需要将jwt提出一个公共的模块
     private Logger log = LoggerFactory.getLogger(AuthorizationServerConfig.class);
 
     @Autowired
@@ -128,5 +131,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public ClientDetailsService clientDetails() {
         return new JdbcClientDetailsService(dataSource);
     }
+
 
 }

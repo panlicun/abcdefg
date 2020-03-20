@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@Order(2)
+@Order(4)
 public class  SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private AuthService authService;
@@ -25,20 +25,6 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
         this.authService = authService;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http    // 配置登陆页/login并允许访问
-                .formLogin().permitAll()
-//                .formLogin().loginPage("http://www.baidu.com").loginProcessingUrl("http://www.taobao.com")
-                // 登出页
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
-                // 其余所有请求全部需要鉴权认证
-                .and().authorizeRequests().antMatchers("/**").permitAll()
-                .anyRequest().authenticated()
-
-                // 由于使用的是JWT，我们这里不需要csrf
-                .and().csrf().disable();
-    }
 
     @Override
     @Bean
