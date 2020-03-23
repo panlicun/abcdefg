@@ -1,24 +1,19 @@
 package com.plc.abcdefg.oauth.config.oauth;
 
 import com.alibaba.fastjson.JSON;
-import com.plc.abcdefg.oauth.auth.service.AuthService;
+import com.plc.abcdefg.oauth.authentication.mobile.MobileAuthService;
 import com.plc.abcdefg.oauth.config.error.AbcdefgWebResponseExceptionTranslator;
 import com.plc.abcdefg.kernel.model.common.ResponseMsgEnum;
 import com.plc.abcdefg.kernel.model.common.ResponseMsg;
-import com.plc.abcdefg.oauth.util.Md5PasswordEncoder;
-import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -50,7 +45,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private AuthService authService;
+    private MobileAuthService mobileAuthService;
 
     @Value("${jwt.signingKey}")
     private String jwtSigningKey;
@@ -109,7 +104,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .tokenStore(jwtTokenStore())
-                .userDetailsService(authService)  //刷新token的时候需要改类进行比对
+                .userDetailsService(mobileAuthService)  //刷新token的时候需要改类进行比对
                 .tokenEnhancer(jwtTokenConverter())
                 .authenticationManager(authenticationManager)   //如果没有这句话，则不能使用oauth的password授权方式
                 .exceptionTranslator(new AbcdefgWebResponseExceptionTranslator());  //统一异常处理

@@ -12,6 +12,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 @Component
 public class MobileAuthenticationSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
@@ -21,8 +23,8 @@ public class MobileAuthenticationSecurityConfig extends SecurityConfigurerAdapte
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    @Resource(name = "mobileAuthService")
+    private UserDetailsService mobileAuthService;
 
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
@@ -36,7 +38,7 @@ public class MobileAuthenticationSecurityConfig extends SecurityConfigurerAdapte
         mobileAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
 
         MobileAuthenticationProvider mobileAuthenticationProvider = new MobileAuthenticationProvider();
-        mobileAuthenticationProvider.setUserDetailsService(userDetailsService);
+        mobileAuthenticationProvider.setUserDetailsService(mobileAuthService);
         mobileAuthenticationProvider.setRedisTemplate(redisTemplate);
         http.authenticationProvider(mobileAuthenticationProvider)
                 .addFilterAfter(mobileAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

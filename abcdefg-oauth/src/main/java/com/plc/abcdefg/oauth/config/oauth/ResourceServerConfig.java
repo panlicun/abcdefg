@@ -1,5 +1,6 @@
 package com.plc.abcdefg.oauth.config.oauth;
 
+import com.plc.abcdefg.oauth.authentication.account.AccountAuthenticationSecurityConfig;
 import com.plc.abcdefg.oauth.authentication.mobile.MobileAuthenticationSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Autowired
     private MobileAuthenticationSecurityConfig mobileAuthenticationSecurityConfig;
+    @Autowired
+    private AccountAuthenticationSecurityConfig accountAuthenticationSecurityConfig;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -43,14 +46,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 
         // 所以在我们的app登录的时候我们只要提交的action，不要跳转到登录页
-        http.formLogin()
-                //登录页面，app用不到
-                //.loginPage("/authentication/login")
-                //登录提交action，app会用到
-                // 用户名登录地址
-                .loginProcessingUrl("/form/token")
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler);
+//        http.formLogin()
+//                //登录页面，app用不到
+//                //.loginPage("/authentication/login")
+//                //登录提交action，app会用到
+//                // 用户名登录地址
+//                .loginProcessingUrl("/form/token")
+//                .successHandler(authenticationSuccessHandler)
+//                .failureHandler(authenticationFailureHandler);
 
 
 
@@ -62,11 +65,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
         http
                 // 手机验证码登录
-                .apply(mobileAuthenticationSecurityConfig)
+                .apply(mobileAuthenticationSecurityConfig) //手机验证
+                .and()
+                .apply(accountAuthenticationSecurityConfig) //用户名验证
                 .and()
                 .authorizeRequests()
                 //手机验证码登录地址
-                .antMatchers("/form/token","/mobile/token", "/email/token")
+                .antMatchers("/account/token","/mobile/token", "/email/token")
                 .permitAll()
 //                .and()
 //                .authorizeRequests()
