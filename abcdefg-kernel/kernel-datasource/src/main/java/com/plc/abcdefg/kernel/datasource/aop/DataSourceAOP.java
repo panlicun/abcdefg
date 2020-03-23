@@ -1,9 +1,7 @@
 package com.plc.abcdefg.kernel.datasource.aop;
 
 import com.plc.abcdefg.kernel.datasource.annotation.DataSource;
-import com.plc.abcdefg.kernel.datasource.constant.DataSourceKey;
 import com.plc.abcdefg.kernel.datasource.util.DataSourceHolder;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
@@ -11,8 +9,6 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 

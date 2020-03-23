@@ -13,7 +13,6 @@
     <packaging>jar</packaging>
 
     <name>kernel-model</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
     <description>一些通用实体，枚举，异常等规范</description>
 

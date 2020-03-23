@@ -52,8 +52,6 @@ public class DataSourceAutoConfig {
 		return ymalMap;
 	}
 
-	// TODO: 2020/3/13 mybatis的基本配置也写在这里 
-
 	/**
 	 * 默认的数据源
 	 * @return

@@ -41,11 +41,9 @@ public class MobileAuthenticationFilter extends AbstractAuthenticationProcessing
 
         String mobile = obtainMobile(httpServletRequest);
         String smsCode = obtainSmsCode(httpServletRequest);
-        //todo:验证短信验证码2
         if (mobile == null) {
             mobile = "";
         }
-
         mobile = mobile.trim();
 
         MobileAuthenticationToken authRequest = new MobileAuthenticationToken(mobile, smsCode);

@@ -21,6 +21,7 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        // TODO: 2020/3/23 后期如果有需要可以调用其他服务模块获取用户信息进行验证
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
         com.plc.abcdefg.kernel.model.User user = userMapper.getByAccount(name);
         if(null == user){

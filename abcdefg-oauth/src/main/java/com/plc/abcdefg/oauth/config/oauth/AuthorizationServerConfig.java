@@ -111,7 +111,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenStore(jwtTokenStore())
                 .userDetailsService(authService)  //刷新token的时候需要改类进行比对
                 .tokenEnhancer(jwtTokenConverter())
-                .authenticationManager(authenticationManager)
+                .authenticationManager(authenticationManager)   //如果没有这句话，则不能使用oauth的password授权方式
                 .exceptionTranslator(new AbcdefgWebResponseExceptionTranslator());  //统一异常处理
     }
 

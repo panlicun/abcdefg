@@ -13,7 +13,6 @@
     <packaging>jar</packaging>
 
     <name>kernel-jwt</name>
-    <!-- FIXME change it to the project's website -->
     <description>jwt鉴权相关的工具类</description>
     <url>http://www.example.com</url>
 
