@@ -16,11 +16,11 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Order(3)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    @Autowired
-    protected AuthenticationSuccessHandler authenticationSuccessHandler;
-
-    @Autowired
-    protected AuthenticationFailureHandler authenticationFailureHandler;
+//    @Autowired
+//    protected AuthenticationSuccessHandler authenticationSuccessHandler;
+//
+//    @Autowired
+//    protected AuthenticationFailureHandler authenticationFailureHandler;
 
     @Autowired
     private MobileAuthenticationSecurityConfig mobileAuthenticationSecurityConfig;
@@ -44,7 +44,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 
 
-
         // 所以在我们的app登录的时候我们只要提交的action，不要跳转到登录页
 //        http.formLogin()
 //                //登录页面，app用不到
@@ -55,13 +54,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //                .successHandler(authenticationSuccessHandler)
 //                .failureHandler(authenticationFailureHandler);
 
-
-
-
-//                //成功处理器 返回Token
-//                .successHandler(authenticationSuccessHandler)
-//                //失败处理器
-//                .failureHandler(authenticationFailureHandler);
 
         http
                 // 手机验证码登录
