@@ -60,7 +60,7 @@
         <sharding-jdbc>2.0.3</sharding-jdbc>
         <org.yaml-snakeyaml>1.23</org.yaml-snakeyaml>
         <commons-lang3.version>3.7</commons-lang3.version>
-        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
     </properties>
 
     <dependencyManagement>
