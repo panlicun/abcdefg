@@ -9,15 +9,18 @@ apollo:
 
 spring:
   application:
-    name: producer
+    name: abcdefg-producer
   profiles:
     active: dev  #dev
+  security:
+    user:
+      name: panlicun
+      password: panlicun
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
-  mapper-locations: classpath*:com/plc/producer/modular/*/mapper/sqlMapperXml/*Mapper.xml
-  typeAliasesPackage: com.plc.producer.modular.*.model
-  typeEnumsPackage: com.plc.producer.common.enums
+  mapper-locations: classpath*:com/plc/abcdefg/producer/modular/*/mapper/sqlMapperXml/*Mapper.xml
+  typeAliasesPackage: com.plc.abcdefg.kernel.model
   global-config:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
     db-column-underline: false
@@ -36,4 +39,4 @@ mybatis-plus:
 logging:
   config: classpath:logback.xml
   level:
-    root: debug
+    root: info

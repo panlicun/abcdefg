@@ -1,7 +1,6 @@
 package com.plc.abcdefg.oauth.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.plc.abcdefg.oauth.util.Md5PasswordEncoder;
 import org.apache.commons.collections.MapUtils;
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;

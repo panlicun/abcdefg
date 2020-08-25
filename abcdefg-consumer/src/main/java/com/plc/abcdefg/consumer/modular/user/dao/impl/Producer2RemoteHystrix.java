@@ -1,8 +1,7 @@
 package com.plc.abcdefg.consumer.modular.user.dao.impl;
 
 import com.plc.abcdefg.consumer.modular.user.dao.Producer2Remote;
-import com.plc.abcdefg.consumer.modular.user.model.SysUser;
-import com.plc.abcdefg.consumer.modular.user.model.User;
+import com.plc.abcdefg.kernel.model.User;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +25,7 @@ public class Producer2RemoteHystrix implements FallbackFactory<Producer2Remote> 
             }
 
             @Override
-            public void saveUser(SysUser sysUser) {
+            public void saveUser(User sysUser) {
 
             }
         };

@@ -1,22 +1,23 @@
 package com.plc.abcdefg.consumer.modular.user.dao;
 
-import com.plc.abcdefg.consumer.modular.user.model.SysUser;
-import com.plc.abcdefg.consumer.modular.user.model.User;
+import com.plc.abcdefg.consumer.config.FeignConfiguration;
+import com.plc.abcdefg.consumer.modular.user.dao.impl.ProducerRemoteHystrix;
+import com.plc.abcdefg.kernel.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Administrator on 2018/3/19 0019.
  */
-@FeignClient(name="producer")
+@FeignClient(name="abcdefg-producer",configuration = FeignConfiguration.class,fallbackFactory = ProducerRemoteHystrix.class)
 public interface ProducerRemote {
 
     @RequestMapping("/{id}")
-    User test(@PathVariable(value = "id") int id);
+    User getUser(@PathVariable(value = "id") int id);
+
+    @GetMapping("/name/{name}")
+    User getUserByName(@PathVariable(value = "name") String name);
 
     @PostMapping("/saveUser")
-    void saveUser(@RequestBody SysUser sysUser);
+    void saveUser(@RequestBody User sysUser);
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.plc.abcdefg.gateway.auth.mapper.UserMapper">
+<mapper namespace="com.plc.abcdefg.producer.modular.user.mapper.UserMapper">
 
 	<resultMap id="BaseResultMap" type="com.plc.abcdefg.kernel.model.User">
 		<id column="id" property="id" />
@@ -8,6 +8,7 @@
 		<result column="name" property="name" />
 		<result column="password" property="password" />
 		<result column="phone" property="phone" />
+		<result column="version" property="version" />
 	</resultMap>
 
     <select id="getByAccount" resultType="User">
