@@ -1,4 +1,4 @@
-package com.plc.abcdefg.producer3.config;
+package com.plc.abcdefg.producer.config;
 
 import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
@@ -34,5 +34,8 @@ public class MybatisPlusConfig {
      */
     @Bean
     public OptimisticLockerInterceptor optimisticLockerInterceptor() { return new OptimisticLockerInterceptor(); }
+
+
+    // TODO: 2020/9/16 全局异常处理，好像没有完善 
 
 }
