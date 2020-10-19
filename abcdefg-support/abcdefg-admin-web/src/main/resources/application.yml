@@ -1,0 +1,55 @@
+server:
+  port: 8762
+
+spring:
+  application:
+      name: abcdefg-admin-web
+  profiles:
+      active: dev  #dev
+
+
+# 如果不使用自定义发邮件CustomNotifier，可以解开注释，使用默认的邮件内容
+#  mail:
+#    host: smtp.163.com
+#    username: xxxxx@163.com
+#    password: xxxx
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          to: 63105408@qq.com
+#          from: plc-cun@163.com
+
+# 注意 : 配置了邮件通知后，会出现 反复通知 service offline / up。这个问题的原因在于 查询应用程序的状态和信息超时，下面给出两种解决方案：
+#方法一：增加超时时间（单位:ms）
+#      monitor:
+#        read-timeout: 20000   #增加超时时间（单位:ms）
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+#方法二：关闭闭未使用或不重要的检查点
+#  health:
+#   db:
+#     enabled: false
+#   mail:
+#     enabled: false
+#   redis:
+#     enabled: false
+#   mongo:
+#     enabled: false
+
+
+#详情可参考https://www.cnblogs.com/huanchupkblog/p/10563629.html
