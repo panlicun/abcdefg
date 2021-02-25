@@ -11,9 +11,12 @@ eureka:
     instanceId: ${spring.cloud.client.ipAddress}:${server.port}
     hostname: ${spring.cloud.client.ipAddress}   #如果没有的话，eureka地址不可用
     health-check-url-path: /actuator/health
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
   client:
-    registerWithEureka: false    #表示本应用是否是向注册中心注册自己（配置高可用的时候需要设置为true,也就是默认值）
+    registerWithEureka: true    #表示本应用是否是向注册中心注册自己（配置高可用的时候需要设置为true,也就是默认值）
     fetchRegistry: true   #是否去检索服务
     serviceUrl:
-      defaultZone: http://abcdefg:abcdefg@${spring.cloud.client.ipAddress}:${server.port}/eureka/
+      defaultZone: http://abcdefg:abcdefg@${spring.cloud.client.ipAddress}:9999/eureka/
 

@@ -66,3 +66,13 @@ logging:
   level:
     root: info
     com.plc.abcdefg.consumer.modular.user.dao.ProducerRemote: DEBUG  #feign的日志，需要配合配置文件中的feign日志使用
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

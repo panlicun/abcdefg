@@ -21,6 +21,7 @@
 
     <modules>
         <module>abcdefg-eureka</module>
+        <module>abcdefg-admin-web</module>
     </modules>
 
     <!--<dependencyManagement>-->
