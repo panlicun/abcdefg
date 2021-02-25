@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -42,12 +43,10 @@ public class DataSourceAutoConfig {
 		Resource app = new ClassPathResource("application.yml");
 		if(env.getActiveProfiles().length != 0){
 			Resource appEnv = new ClassPathResource("application-" + env.getActiveProfiles()[0] + ".yml");
-			URL appEnvUrl = appEnv.getURL();
-			Map<String,Object> appEnvMap =(Map)yaml.load(new FileInputStream(appEnvUrl.getFile()));
+			Map<String,Object> appEnvMap =(Map)yaml.load(appEnv.getInputStream());
 			ymalMap.put("application-" + env.getActiveProfiles()[0] + ".yml",appEnvMap);
 		}
-		URL appUrl = app.getURL();
-		Map<String,Object> appMap =(Map)yaml.load(new FileInputStream(appUrl.getFile()));
+		Map<String,Object> appMap =(Map)yaml.load(app.getInputStream());
 		ymalMap.put("application.yml",appMap);
 		return ymalMap;
 	}
